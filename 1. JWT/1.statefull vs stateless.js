@@ -22,10 +22,19 @@
  * - Client receives the JWT token and stores it (e.g., in local storage or cookies)
  * - Client sends JWT token with each request (e.g., in Authorization header)
  * - Server verifies the JWT token using the secret key and extracts user information from it
+ * - Server does not maintain any session state; all necessary information is contained in the JWT token.
+ * - Access tokens and Refresh tokens:
+ *  - Access tokens: short-lived tokens used for authentication and authorization (e.g., 15 minutes)
+ * - Refresh tokens: long-lived tokens used to obtain new access tokens without requiring the user to log in again (e.g., 7 days)
+ * 
  * 
  * !Advantages:
  * - No server-side session storage
  * - No server-side session storage
  * - JWT tokens contain all necessary information
+ * 
+ * ? Token rotation:
+ * - When a refresh token is used to obtain a new access token, a new refresh token is also issued and the old refresh token is invalidated. This helps to prevent replay attacks and enhances security.
+ * 
  * 
  */
